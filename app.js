@@ -36,7 +36,12 @@ function sendRequest(e) {
             }).then(function (response) {
                 if (response.data) {
                     let review = JSON.stringify(response.data);
-                    eval(JsCode.value);
+                    try {
+                        eval(JsCode.value);
+                    } catch (error) {
+                        respounceView.value = error.toString();
+                        return;
+                    }
                     respounceView.value = review;
                 } else {
                     respounceView.value = 'Respounce data is null.'
