@@ -23,7 +23,7 @@
         <input class='appInput' type="text" id="apiField" placeholder="/api/meta/module">
         <div class='separator'></div>
         <p class='appMessage'>Area for your javascript code</p>
-        <textarea id='JsCodeField' cols='80' rows='5' class='textArea' placeholder='Enter here your JS code. This code will be added to the callback function from server response. Something like: function (respounce) {YOUR CODE HERE =>}. If you want to somehow change the output, you can reassign the "review" variable right in this field, something like: review = JSON.stringify (response, null, 2);'></textarea>
+        <textarea id='JsCodeField' cols='80' rows='5' class='textArea' placeholder='Enter here your JS code. This code will be added to the callback function from server response. Something like: function (response) {YOUR CODE HERE =>}. To access response data, use "response.data". If you want to somehow change the output, you can reassign the "review" variable right in this field, something like: review = JSON.stringify (response, null, 2);'></textarea>
         <div class='separator'></div>
         <p class='appMessage'>The field for confirming the request and for displaying the answer</p>
         <button class='appButton' id='submit'>Submit</button> <span class='appStatus'></span>
