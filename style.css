@@ -1,0 +1,79 @@
+.appInput{
+    margin: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid lightseagreen;
+    outline: none;
+}
+
+.appButton{
+    margin : 0px 10px 0px 10px;
+    padding: 5px;
+    padding-left: 13px;
+    padding-right: 13px;
+    border: 1px solid lightseagreen;
+    background: lightseagreen;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+}
+
+.appButton:active{
+    border-color: lightseagreen;
+    color: lightseagreen;
+    background: white;
+}
+
+.appMessage{
+    margin: 10px;
+    padding: 2px;
+    font-size: 14px;
+    color: lightseagreen;
+    font-style: italic;
+}
+
+.loginMsg{
+    margin: 10px;
+    padding: 2px;
+    font-size: 14px;
+    color: lightsalmon;
+    font-style: italic;
+}
+
+.app{
+    margin : auto;
+    padding: 15px;
+    border: 1px solid lightseagreen;
+    width: 700px;
+}
+
+.separator{
+    margin : 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding : 0;
+    position: relative;
+    width: 100%;
+    border: 2px dashed lightseagreen;
+}
+
+.textArea{
+    padding: 5px;
+    outline: none;
+    border: 1px solid lightseagreen;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.appStatus{
+    display: inline-block;
+    margin: 0px 10px 0px 10px;
+    padding: 2px;
+    font-size: 14px;
+    color: lightsalmon;
+    font-style: italic;
+}
