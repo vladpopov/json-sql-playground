@@ -1,0 +1,19 @@
+<div class='app'>
+  <p class='appMessage'>Area for login</p>
+  <p class='loginMsg' #loginMsg >You are not logged in.</p>
+  <input class='appInput' type="text" placeholder="Enter Api url" (input)='data.url = $event.target.value'>
+  <input class='appInput' type="text" id="loginField" placeholder=" Enter username" (input)='data.login = $event.target.value'>
+  <input class='appInput' type="password" id="passwordField" placeholder="Enter password" (input)='data.password = $event.target.value'>
+  <button class='appButton' id='login' (click)='methods.goLogin()'>Login</button>
+  <div class='separator'></div>
+  <p class='appMessage'>Area for your request body</p>
+  <textarea (input)='data.requestObj = $event.target.value' id='requestField' cols='80' rows='5' class='textArea' placeholder='Request body in JSON format... Like : { "name" : "John" , "lastName" : "Doe" }'></textarea>
+  <input class='appInput' type="text" id="apiField" placeholder="/api/meta/module" (input)='data.api = $event.target.value'>
+  <div class='separator'></div>
+  <p class='appMessage'>Area for your javascript code</p>
+  <textarea (input)='data.JScode = $event.target.value' id='JsCodeField' cols='80' rows='6' class='textArea' placeholder='Enter here your JS code. This code will be added to the callback function from server response. Something like: function (response) {YOUR CODE HERE =>}. To access response data, use "response["field"]". Because TypeScript does not allow you to call the fields of this object through a regular dot. If you want to somehow change the output, you can reassign the "review" variable right in this field, something like: review = JSON.stringify (response, null, 2);'></textarea>
+  <div class='separator'></div>
+  <p class='appMessage'>The field for confirming the request and for displaying the answer</p>
+  <button class='appButton' id='submit' (click)='methods.sendRequest()'>Submit</button> <span class='appStatus' #appMsg></span>
+  <textarea [value]='data.review' id='respounceView' cols='80' rows='20' class='textArea' placeholder="Respounce from server will be here =>" readonly></textarea>
+</div>
