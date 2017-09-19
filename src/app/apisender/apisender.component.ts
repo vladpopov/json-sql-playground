@@ -8,19 +8,20 @@ import { ViewChild } from '@angular/core';
   styleUrls: ['./apisender.component.css']
 })
 export class ApisenderComponent implements OnInit {
-  @ViewChild('loginMsg') loginMsg;
-  @ViewChild('appMsg') appMsg;
-  
+  public appStatus = 'Ready';
+  public loginMsg: string = 'You are not logged in.';
+
+  public url:string = '';
+  public password:string = '';
+  public username:string = '';
+  public api:string = '';
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
 
   data = {
-    url: '',
-    login: '',
-    password: '',
-    api: '',
     JScode: '',
     review: '',
     token: '',
@@ -29,15 +30,15 @@ export class ApisenderComponent implements OnInit {
 
   methods = {
     goLogin: () => {
-      if (this.data.url != '' && this.data.login != '' && this.data.password != '') {
-        this.loginMsg.nativeElement.textContent = "I'm trying to enter...";
-        this.http.post(`${this.data.url}/api/meta/account/${this.data.login}/login`, { password: this.data.password })
+      if (this.url != '' && this.username != '' && this.password != '') {
+        this.loginMsg = "I'm trying to enter...";
+        this.http.post(`${this.url}/api/meta/account/${this.username}/login`, { password: this.password })
           .subscribe(resp => {
             if (resp['token']) {
               this.data.token = resp['token'];
-              this.loginMsg.nativeElement.textContent = 'You entered.';
+              this.loginMsg = 'You entered.';
             } else {
-              this.loginMsg.nativeElement.textContent = 'Login failed!';
+              this.loginMsg = 'Login failed!';
             }
           }, (err: HttpErrorResponse) => {
             if (err.error instanceof Error) {
@@ -51,7 +52,7 @@ export class ApisenderComponent implements OnInit {
       }
     },
     sendRequest: () => {
-      if (this.data.url != '' && this.data.api) {
+      if (this.url != '' && this.api) {
         let tempReqObj: any;
         if (this.data.requestObj != '') {
           try {
@@ -64,11 +65,11 @@ export class ApisenderComponent implements OnInit {
           tempReqObj = {};
         }
 
-        this.appMsg.nativeElement.textContent = 'Sending...';
-        this.http.post(this.data.url + this.data.api, tempReqObj, {
+        this.appStatus = 'Sending...';
+        this.http.post(this.url + this.api, tempReqObj, {
           headers: new HttpHeaders().set('X-HTTP-Method-Override', 'GET').set('Authorization', 'Bearer ' + this.data.token)
         }).subscribe(response => {
-          this.appMsg.nativeElement.textContent = 'Ready!';
+          this.appStatus = 'Ready!';
           let review = JSON.stringify(response);
           /* start running a user code */
           try {
@@ -80,7 +81,7 @@ export class ApisenderComponent implements OnInit {
           this.data.review = review;
         }, (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
-            this.appMsg.nativeElement.textContent = 'Error!';
+            this.appStatus = 'Error!';
             this.data.review = 'Response error : ' + err.error.message;
             return;
           }
